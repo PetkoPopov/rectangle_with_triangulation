@@ -4,7 +4,7 @@
         <form id="myForm">
             a:  <input type="number" name="a"  value="111" style="width:99px;height: 66px;background-color: #ffcc33;text-align: center;font-size: 40px " />
             b:<input type="number" name="b"  value="111" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/>
-            c:<input type="number" name="c"  value="111" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/><p></p>
+            c:<input type="number" name="c"  value="111" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/><pp></pp>
             m:<input type="number" name="m"  value="200" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/>
             n:<input type="number" name="n"  value="200" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/>
             l:<input type="number" name="l"  value="200" style="width:99px;height: 66px;background-color: #ffcc33; text-align: center;font-size: 40px"/>
@@ -14,8 +14,13 @@
         <button onclick="takeDataForPiramide()" style="background-color: chocolate;height:55px">get parameters</button>
         <button onclick="main()" style = "background-color: darkslategrey;height: 55px">double click to show diagram</button>
 
-        <a id="hello" style="font-size:35px;></a>
-
+        <a id="hello" style="font-size:25px;"></aa>
+        <style>
+            canvas{
+                border:solid aquamarine;
+                color: 2px;
+            }
+        </style>
         <canvas id="myCanvas" height="300" width="300" ></canvas>        
 
         <script>
@@ -30,13 +35,13 @@
                 var l = document.getElementById("myForm").elements[5].value;
 
                 var cos_ab = cosinus(a, b, c);
-                var hlp = "<p>---" + cos_ab + " --->cosinus betwin a and b ----";
+                var hlp = "<pp>---" + cos_ab + " --->cosinus betwin a and b ----";
                 pyramide.push(hlp);
 
                 let angle = Math.acos(cos_ab);
                 angle *= (180 / 3.1415)
                 angle = Math.round(angle);
-                hlp = "---" + angle + " --->angle  betwin a and b  ----</p>";
+                hlp = "---" + angle + " --->angle  betwin a and b  ----</pp>";
                 pyramide.push(hlp);
 
                 var cos_al = cosinus(a, l, n);
@@ -50,49 +55,95 @@
                 pyramide.push(hlp);
 
                 var cos_bl = cosinus(b, l, m);
-                hlp = "<p>" + cos_bl + "&#8611 cosinus betwin b and l";
+                hlp = "<pp>" + cos_bl + "&#8611 cosinus betwin b and l";
                 pyramide.push(hlp);
 
                 angle = Math.acos(cos_bl);
                 angle *= (180 / 3.1415)
                 angle = Math.round(angle);
-                hlp = "---" + angle + "---> &#8738  betwin b and l</p>";
+                hlp = "---" + angle + "---> &#8738  betwin b and l</pp>";
                 pyramide.push(hlp);
 
                 var a_middle = l * cos_al;
-                hlp = '<p style="font-size:35px;">' + Math.round(a_middle) + "&#8614 a middle</p>"
+                hlp = '<pp>' + Math.round(a_middle) + "&#8614 a middle</pp>"
 
                 pyramide.push(hlp);
                 var b_middle = l * cos_bl;
                 var c_middle = sideByTwoSidesAndCos(a_middle, b_middle, cos_ab);
                 var h_a = hByCosFiAndL(l, cos_al);
 
-                hlp = "<p>" + Math.round
-                (h_a) + '---->h-a</p>';
+                hlp =  Math.round
+                        (h_a) + '---->h-a';
                 pyramide.push(hlp);
                 var h_b = hByCosFiAndL(l, cos_bl);
-                
-                hlp = "<p>" + Math.round(h_b) + '---->h-b</p>';
+
+                hlp = "<pp>" + Math.round(h_b) + '---->h-b</pp>';
                 pyramide.push(hlp);
                 ////////////////////////
-                var hPyramude = hByThreeSides(h_a, h_b, c_middle);
-                hlp = "<p>" + hPyramude + "-------->h Pyramide</p>";
-                pyramide.push(hlp);
+
                 var baseArea = areaThreeSides(a, b, c);
                 hlp = baseArea + " base area";
                 pyramide.push(hlp);
                 var areaLeftSide = areaThreeSides(a, l, n);
-                hlp = "<p>" + areaLeftSide + "arae left side</p>";
+                hlp = "<pp>" + areaLeftSide + "arae left side</pp>";
                 pyramide.push(hlp);
                 var areaRightSide = areaThreeSides(b, l, m);
-                hlp = hlp = areaRightSide + "area right side";
+                hlp ='<pp>'+ areaRightSide + "area right side</pp>";
                 pyramide.push(hlp);
                 var areaBackSide = areaThreeSides(c, m, n);
-                hlp = "<p>" + areaBackSide + "area back side</p>";
+                hlp =  areaBackSide + "area back side";
                 pyramide.push(hlp);
+                     ///////////////////////
+                     var sinAlfa=cosinus(a_middle, c_middle, b_middle);
+                var cosAlfa = convertSinCos(sinAlfa);
+                hlp = "<pp>"+cosAlfa + "--->cosAlfa</pp>";
+                pyramide.push(hlp);
+
+                angle = Math.acos(cosAlfa);
+                angle = convertRadiansToDegrees(angle);
+                hlp = "--->" + angle + "---> &#8738 Alfa";
+                pyramide.push(hlp);
+                   ////////////////////
+                   var sinBeta=cosinus(c_middle, b_middle, a_middle);
+                var cosBeta = convertSinCos(sinBeta);
+                hlp = "<pp>---->" + cosBeta + "--->cosBeta</pp>";
+                pyramide.push(hlp);
+
+                angle = Math.acos(cosBeta);
+                angle = convertRadiansToDegrees(angle);
+                hlp = "--->" + angle + "---> &#8738 Beta";
+                pyramide.push(hlp);
+                     ////////////////////
+                     var a_SmallBaseTriangle=c_middle/(sinAlfa*(cosAlfa+cosBeta));
+                     a_SmallBaseTriangle=Math.round(a_SmallBaseTriangle);
+                     hlp="<pp>"+a_SmallBaseTriangle+" &#8378 small side</pp>";
+                     pyramide.push(hlp);
+                     
+                     hPyramide=Math.sqrt((h_a*h_a)-(a_SmallBaseTriangle*a_SmallBaseTriangle));
+                     hlp=hPyramide+"<pp>finaly this stuped pyramide is high </aa>";
+                     pyramide.push(hlp);
+                     hlp='<div style="font-size: 66px;text-align: center">&#9786 </div>';
+                     pyramide.push(hlp);
+                  
                 document.getElementById("hello").innerHTML = pyramide;
             }
 
+
+            function convertSinCos(sin) {
+                return Math.sqrt(1 - sin * sin);
+            }
+            /**
+             * 
+             * @param {type} radians
+             * @returns degrees
+             */
+            function convertRadiansToDegrees(radians) {
+                radians *= (180 / 3.1415);
+                radians = Math.round(radians);
+                return radians;
+
+
+            }
             /**
              * 
              * @param {type} a kated one 
@@ -104,9 +155,9 @@
                 $a = Number($a);
                 $b = Number($b);
                 $c = Number($c);
-                let areaHlp=areaThreeSides($a,$b,$c);
-                let hByOtherWay=2*areaHlp/$c;
-                let $cos_ac=cosinus($a, $c,$b);
+                let areaHlp = areaThreeSides($a, $b, $c);
+                let hByOtherWay = 2 * areaHlp / $c;
+                let $cos_ac = cosinus($a, $c, $b);
                 let h = hByCosFiAndL($a, $cos_ac);
                 return hByOtherWay;
             }
@@ -134,7 +185,7 @@
 
                 k = Number(k);
                 cos = Number(cos);
-                let hlp=(k*k)-(k*cos)*(k*cos);
+                let hlp = (k * k) - (k * cos) * (k * cos);
                 var h = Math.sqrt(hlp);
                 return h;
             }
